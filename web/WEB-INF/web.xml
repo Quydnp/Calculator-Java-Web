@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+    <servlet>
+        <servlet-name>loginServlet1</servlet-name>
+        <servlet-class>Controller.loginServlet1</servlet-class>
+        <init-param>
+            <param-name>user1</param-name>
+            <param-value>abc</param-value>
+        </init-param>
+        <init-param>
+            <param-name>pass1</param-name>
+            <param-value>12345</param-value>
+        </init-param>
+    </servlet>
+    <servlet>
+        <servlet-name>welcomeServlet</servlet-name>
+        <servlet-class>Controller.welcomeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>loginServlet1</servlet-name>
+        <url-pattern>/loginServlet1</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>welcomeServlet</servlet-name>
+        <url-pattern>/welcomeServlet</url-pattern>
+    </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>
