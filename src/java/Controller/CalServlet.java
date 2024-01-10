@@ -57,9 +57,18 @@ public class CalServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String operator = request.getParameter("operator");
-        String first = request.getParameter("first");
-        String second = request.getParameter("second");
-        String result = calculate(first, second, operator);
+        String first = "";
+        String second ="";
+        String result = "";
+        try {
+            first = request.getParameter("first");
+            second = request.getParameter("second");
+            result = calculate(first, second, operator);
+        } catch (Exception e) {
+            first = "";
+            second = "";
+            result = "";
+        }
         response.setContentType("text/html");
         try (PrintWriter out = response.getWriter()) {
             out.println("<form action='CalServlet'>");
@@ -68,12 +77,12 @@ public class CalServlet extends HttpServlet {
             out.println("<label for=\"second\">Second:</label>");
             out.println("<input type=\"number\" name=\"second\" value='"+ second +"'><br>");
             out.println("<label for=\"operator\">Operator</label>");
-            out.println("<select id=\"operator\" name=\"operator\">");
-            out.println("<option value='+'>+</option>");
-            out.println("<option value='-'>-</option>");
-            out.println("<option value='*'>*</option>");
-            out.println("<option value='/'>/</option>");
-            out.println("<option value='^'>^</option>");
+            out.println("<select id=\"operator\" name=\"operator\" >");
+            out.println("<option " + ("+".equals(operator) ? "selected" : "") + " value=\"+\">+</option>");
+            out.println("<option " + ("-".equals(operator) ? "selected" : "") + " value=\"-\">-</option>");
+            out.println("<option " + ("*".equals(operator) ? "selected" : "") + " value=\"*\">*</option>");
+            out.println("<option " + ("/".equals(operator) ? "selected" : "") + " value=\"/\">/</option>");
+            out.println("<option " + ("^".equals(operator) ? "selected" : "") + " value=\"^\">^</option>");
             out.println("</select><br><br>");
             out.println("<input type=\"submit\" value=\"Compute\"><br><br>");
             out.print("<label for=\"result\">Result:</label>");
